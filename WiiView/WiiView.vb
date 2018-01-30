@@ -34,4 +34,19 @@ Public Class WiiView
         InitializeChromium("https://geoguessr.com/")
     End Sub
 
+    Private Sub trayIcon_DoubleClick(sender As Object, e As EventArgs) Handles trayIcon.DoubleClick
+        If WindowState = WindowState.Minimized Then
+            WindowState = WindowState.Normal
+        Else
+            WindowState = WindowState.Minimized
+        End If
+
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Close()
+    End Sub
+
+    Private Sub trayIcon_Click(sender As Object, e As EventArgs) Handles trayIcon.Click
+    End Sub
 End Class

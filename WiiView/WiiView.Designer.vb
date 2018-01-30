@@ -25,13 +25,14 @@ Partial Class WiiView
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(WiiView))
         Me.trayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.pbMaps = New System.Windows.Forms.PictureBox()
-        Me.pbGuessr = New System.Windows.Forms.PictureBox()
         Me.trayMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.pbMaps = New System.Windows.Forms.PictureBox()
+        Me.pbGuessr = New System.Windows.Forms.PictureBox()
+        Me.tmCheckController = New System.Windows.Forms.Timer(Me.components)
+        Me.trayMenu.SuspendLayout()
         CType(Me.pbMaps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbGuessr, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.trayMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'trayIcon
@@ -40,6 +41,18 @@ Partial Class WiiView
         Me.trayIcon.Icon = CType(resources.GetObject("trayIcon.Icon"), System.Drawing.Icon)
         Me.trayIcon.Text = "trayIcon"
         Me.trayIcon.Visible = True
+        '
+        'trayMenu
+        '
+        Me.trayMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.trayMenu.Name = "trayMenu"
+        Me.trayMenu.Size = New System.Drawing.Size(93, 26)
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'pbMaps
         '
@@ -54,6 +67,7 @@ Partial Class WiiView
         Me.pbMaps.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbMaps.TabIndex = 0
         Me.pbMaps.TabStop = False
+        Me.pbMaps.WaitOnLoad = True
         '
         'pbGuessr
         '
@@ -68,18 +82,12 @@ Partial Class WiiView
         Me.pbGuessr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbGuessr.TabIndex = 1
         Me.pbGuessr.TabStop = False
+        Me.pbGuessr.WaitOnLoad = True
         '
-        'trayMenu
+        'tmCheckController
         '
-        Me.trayMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
-        Me.trayMenu.Name = "trayMenu"
-        Me.trayMenu.Size = New System.Drawing.Size(93, 26)
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
+        Me.tmCheckController.Enabled = True
+        Me.tmCheckController.Interval = 500
         '
         'WiiView
         '
@@ -96,9 +104,9 @@ Partial Class WiiView
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "WiiView"
         Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+        Me.trayMenu.ResumeLayout(False)
         CType(Me.pbMaps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbGuessr, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.trayMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -108,4 +116,5 @@ Partial Class WiiView
     Friend WithEvents pbGuessr As PictureBox
     Friend WithEvents trayMenu As ContextMenuStrip
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents tmCheckController As Timer
 End Class

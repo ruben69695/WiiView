@@ -5,10 +5,6 @@ Public Class WiiView
 
     Public chromeBrowser As ChromiumWebBrowser
 
-    Private Sub WiiView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
     Private Sub WiiView_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         CefSharp.Cef.Shutdown()
     End Sub
@@ -47,6 +43,4 @@ Public Class WiiView
         Close()
     End Sub
 
-    Private Sub trayIcon_Click(sender As Object, e As EventArgs) Handles trayIcon.Click
-    End Sub
 End Class

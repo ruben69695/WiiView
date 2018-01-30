@@ -16,7 +16,7 @@ Public Class WiiView
     Private Sub InitializeChromium(url As String)
         pbGuessr.Visible = False
         pbMaps.Visible = False
-
+    
         Me.WindowState = WindowState.Maximized
 
         Dim settings As New CefSettings()

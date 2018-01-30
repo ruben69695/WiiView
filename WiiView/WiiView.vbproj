@@ -91,6 +91,7 @@
 
     <Reference Include="WiimoteLib, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\WiimoteLib.1.7\lib\WiimoteLib.dll</HintPath>
+    </Reference>
 
     <Reference Include="WindowsBase">
       <HintPath>packages\WindowsBase.4.6.1055.0\lib\WindowsBase.dll</HintPath>

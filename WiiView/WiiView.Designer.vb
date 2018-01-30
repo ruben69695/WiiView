@@ -22,17 +22,30 @@ Partial Class WiiView
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Me.trayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.SuspendLayout()
+        '
+        'trayIcon
+        '
+        Me.trayIcon.Text = "trayIcon"
+        Me.trayIcon.Visible = True
         '
         'WiiView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(456, 279)
+        Me.ClientSize = New System.Drawing.Size(738, 478)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "WiiView"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "WiiView"
+        Me.TopMost = True
         Me.ResumeLayout(False)
 
     End Sub
 
+    Friend WithEvents trayIcon As NotifyIcon
 End Class

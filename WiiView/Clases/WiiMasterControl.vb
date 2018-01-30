@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.InteropServices
+﻿Imports ClApi
 
 Public Class WiiMasterControl
     Protected A As Boolean = False
@@ -14,22 +14,6 @@ Public Class WiiMasterControl
     Protected One As Boolean = False
     Protected Two As Boolean = False
 
-    <Flags()>
-    Enum MouseEventFlag As UInteger
-        Move = 1
-        LeftDown = 2
-        LeftUp = 4
-        RightDown = 8
-        RightUp = 16
-        MiddleDown = 32
-        MiddleUp = 64
-        XDown = 128
-        XUp = 256
-        Wheel = 2048
-        VirtualDesk = 16384
-        Absolute = 32768
-    End Enum
-
     Public Sub CheckPowerClicked(currentState As Boolean)
         If currentState Then
             Power = True
@@ -42,6 +26,7 @@ Public Class WiiMasterControl
         If A = True AndAlso currentState = False Then
             A = False
             ' Función Xavi LeftUp
+
         ElseIf A = False AndAlso currentState = True Then
             A = True
             ' Función Xavi LeftDown
@@ -56,17 +41,5 @@ Public Class WiiMasterControl
             B = True
             ' Función Xavi RightDown
         End If
-    End Sub
-
-    <DllImport("user32.dll")>
-    Public Shared Function SetCursorPos(ByVal X As Integer, ByVal Y As Integer) As Boolean
-    End Function
-
-    <DllImport("user32.dll")>
-    Private Shared Sub mouse_event(ByVal flags As MouseEventFlag, ByVal dx As Integer, ByVal dy As Integer, ByVal data As UInteger, ByVal extraInfo As UIntPtr)
-    End Sub
-
-    Public Shared Sub MouseLeftDown()
-        mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, UIntPtr.Zero)
     End Sub
 End Class

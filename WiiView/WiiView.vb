@@ -14,7 +14,7 @@ Public Class WiiView
     End Sub
 
     Private Sub InitializeChromium(url As String)
-        Me.WindowState = WindowState
+        Me.WindowState = WindowState.Maximized
         Dim settings As New CefSettings()
         CefSharp.Cef.Initialize(settings)
         chromeBrowser = New ChromiumWebBrowser(url)

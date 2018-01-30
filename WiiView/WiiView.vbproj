@@ -165,7 +165,7 @@
     <None Include="Resources\logo_maps1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\ClApi.dll" />
+    <Content Include="dll\ClApiDll2.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />

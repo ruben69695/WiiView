@@ -170,6 +170,7 @@
   <ItemGroup>
     <None Include="Resources\logo_maps1.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="dll\ClApiDll2.dll" />
   </ItemGroup>

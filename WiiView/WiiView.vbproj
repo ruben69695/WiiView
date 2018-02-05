@@ -160,8 +160,6 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="WiimoteLib_Extras\docs\WiimoteLib.chm" />
-    <None Include="WiimoteLib_Extras\samples.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo_guessr.png" />
@@ -173,14 +171,7 @@
     <None Include="Resources\logo_maps1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\ClApi.dll" />
-    <Content Include="WiimoteLib_Extras\docs\copyright.txt" />
-    <Content Include="WiimoteLib_Extras\docs\license.txt" />
-    <Content Include="WiimoteLib_Extras\MSRS\Wiimote.Y2007.M06.dll" />
-    <Content Include="WiimoteLib_Extras\MSRS\Wiimote.Y2007.M06.Proxy.dll" />
-    <Content Include="WiimoteLib_Extras\MSRS\Wiimote.Y2007.M06.Proxy.xml" />
-    <Content Include="WiimoteLib_Extras\MSRS\Wiimote.Y2007.M06.Transform.dll" />
-    <Content Include="WiimoteLib_Readme.txt" />
+    <Content Include="dll\ClApiDll2.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />

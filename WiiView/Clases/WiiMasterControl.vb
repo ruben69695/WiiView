@@ -123,7 +123,7 @@
                 ' Función Xavi KeyHome
                 Home = True
                 'TODO Función WheelClick en la dll
-                'ClApiDll2.ClApi.DoWheelClick()
+                ClApiDll2.ClApi.DoWheelClick()
             End If
         Else
             'TODO Llamar a función para abrir el FrmMain y que nos permita seeleccionar Street o Geo

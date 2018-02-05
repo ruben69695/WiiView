@@ -11,8 +11,9 @@
     Protected Power As Boolean = False
     Protected One As Boolean = False
     Protected Two As Boolean = False
-
     Protected Perfil As String = "P1"
+    Protected MidPoint As Point
+
 
     Public Sub CheckPowerClicked(currentState As Boolean)
         If currentState Then
@@ -128,6 +129,14 @@
         Else
             'TODO Llamar a función para abrir el FrmMain y que nos permita seeleccionar Street o Geo
         End If
+    End Sub
+
+    Public Sub SetCursor(intX As Integer, intY As Integer)
+        MidPoint = New Point(intX, intY)
+        If MidPoint.X > intX + 3 Then
+
+        End If
+        ClApiDll2.ClApi.SetCursorPos(intX, intY)
     End Sub
 
     Public Sub CheckOneClicked(currentState As Boolean)

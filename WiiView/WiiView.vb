@@ -85,7 +85,12 @@ Public Class WiiView
     Private Sub wm_WiimoteChanged(sender As Object, e As WiimoteChangedEventArgs)
         Dim ws As WiimoteState = e.WiimoteState
 
-        Console.WriteLine(ws.ToString())
+        masterController.SetCursor(
+            CType(Screen.PrimaryScreen.Bounds.Width - (0 + (ws.IRState.IRSensors.First().RawPosition.X - 0) * (Screen.PrimaryScreen.Bounds.Width - 0) / (1023 - 0)), Integer),
+            CType(0 + (ws.IRState.IRSensors.First().RawPosition.Y - 0) * (Screen.PrimaryScreen.Bounds.Height - 0) / (767 - 0), Integer)
+        )
+
+        'Console.WriteLine(ws.ToString())
         If ws.ButtonState.A OrElse Not ws.ButtonState.A Then
             masterController.CheckACliked(ws.ButtonState.A)
         End If
@@ -119,6 +124,7 @@ Public Class WiiView
         If ws.ButtonState.Two OrElse Not ws.ButtonState.Two Then
             masterController.CheckTwoClicked(ws.ButtonState.Two)
         End If
+
     End Sub
 
     Private Function IsControllerConnected() As Boolean

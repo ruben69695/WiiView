@@ -82,6 +82,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\ClApi.dll</HintPath>
     </Reference>
+    <Reference Include="ClApiDll2">
+      <HintPath>dll\ClApiDll2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />

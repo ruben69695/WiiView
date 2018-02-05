@@ -93,7 +93,7 @@ Public Class WiiView
             masterController.CheckBClicked(ws.ButtonState.B)
         End If
         If ws.ButtonState.Home OrElse Not ws.ButtonState.Home Then
-            masterController.CheckHomeClicked(ws.ButtonState.B)
+            masterController.CheckHomeClicked(ws.ButtonState.Home)
         End If
         If ws.ButtonState.Down OrElse Not ws.ButtonState.Down Then
             masterController.CheckDownClicked(ws.ButtonState.Down)

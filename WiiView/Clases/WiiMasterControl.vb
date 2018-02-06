@@ -1,5 +1,6 @@
 ﻿Public Class WiiMasterControl
     Protected A As Boolean = False
+    Protected AB As Boolean = False
     Protected B As Boolean = False
     Protected Left As Boolean = False
     Protected Right As Boolean = False
@@ -23,27 +24,36 @@
         End If
     End Sub
 
-    Public Sub CheckACliked(currentState As Boolean)
-        If A = True AndAlso currentState = False Then
+    Public Sub CheckACliked(currentAState As Boolean, currentBState As Boolean)
+        If A = True AndAlso currentAState = False Then
             A = False
             ' Función Xavi LeftUp
             ClApiDll2.ClApi.MouseLeftUp()
-        ElseIf A = False AndAlso currentState = True Then
-            A = True
-            ' Función Xavi LeftDown
-            ClApiDll2.ClApi.MouseLeftDown()
+        ElseIf A = False AndAlso currentAState = True Then            
+            If AB = False AndAlso currentBState = true Then
+                AB = true
+                ' Función Xavi Doble click
+                ClApiDll2.ClApi.DoDobleClick()
+            ElseIf currentBState = False Then
+                AB= false
+                A = True
+                ' Función Xavi LeftDown
+                ClApiDll2.ClApi.MouseLeftDown()
+            End If
         End If
     End Sub
 
-    Public Sub CheckBClicked(currentState As Boolean)
-        If B = True AndAlso currentState = False Then
+    Public Sub CheckBClicked(currentBState As Boolean, currentAState As Boolean)
+        If B = True AndAlso currentBState = False Then
             B = False
             ' Función Xavi RightUp
-            ' Como el click derecho nunca se mantiene presionado no hace falta hacer el keyUp/keyDown, solo haciendo DoRightClick() funciona
-        ElseIf B = False AndAlso currentState = True Then
-            B = True
-            ' Función Xavi RightDown
-            ClApiDll2.ClApi.DoRightClick()
+            ClApiDll2.ClApi.DoRightUp()
+        ElseIf B = False AndAlso currentBState = True Then            
+            If Not currentAState Then
+                B = True
+                ' Función Xavi RightDown
+                ClApiDll2.ClApi.DoRightDown()
+            End If            
         End If
     End Sub
 

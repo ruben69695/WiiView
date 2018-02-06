@@ -73,8 +73,12 @@ Public Class WiiView
             End If
         ElseIf Not controllerConfigured Then
             For Each wm As Wiimote In mWC
-                AddHandler wm.WiimoteChanged, AddressOf wm_WiimoteChanged
-                wm.Connect()
+                Try
+                    AddHandler wm.WiimoteChanged, AddressOf wm_WiimoteChanged
+                    wm.Connect()
+                Catch ex As Exception
+
+                End Try                
             Next
             controllerConfigured = True
         End If
@@ -83,19 +87,22 @@ Public Class WiiView
     End Sub
 
     Private Sub wm_WiimoteChanged(sender As Object, e As WiimoteChangedEventArgs)
+        Dim wm As Wiimote = CType(sender, Wiimote) 
         Dim ws As WiimoteState = e.WiimoteState
 
-        masterController.SetCursor(
-            CType(Screen.PrimaryScreen.Bounds.Width - (0 + (ws.IRState.IRSensors.First().RawPosition.X - 0) * (Screen.PrimaryScreen.Bounds.Width - 0) / (1023 - 0)), Integer),
-            CType(0 + (ws.IRState.IRSensors.First().RawPosition.Y - 0) * (Screen.PrimaryScreen.Bounds.Height - 0) / (767 - 0), Integer)
-        )
+        If Not ws.ButtonState.B Then
+            masterController.SetCursor(
+                CType(Screen.PrimaryScreen.Bounds.Width - (0 + (ws.IRState.IRSensors.First().RawPosition.X - 0) * (Screen.PrimaryScreen.Bounds.Width - 0) / (1023 - 0)), Integer),
+                CType(0 + (ws.IRState.IRSensors.First().RawPosition.Y - 0) * (Screen.PrimaryScreen.Bounds.Height - 0) / (767 - 0), Integer)
+            )
+        End If
 
         'Console.WriteLine(ws.ToString())
         If ws.ButtonState.A OrElse Not ws.ButtonState.A Then
-            masterController.CheckACliked(ws.ButtonState.A)
+            masterController.CheckACliked(ws.ButtonState.A, ws.ButtonState.B)
         End If
         If ws.ButtonState.B OrElse Not ws.ButtonState.B Then
-            masterController.CheckBClicked(ws.ButtonState.B)
+            masterController.CheckBClicked(ws.ButtonState.B,ws.ButtonState.A)
         End If
         If ws.ButtonState.Home OrElse Not ws.ButtonState.Home Then
             masterController.CheckHomeClicked(ws.ButtonState.Home)
@@ -125,7 +132,27 @@ Public Class WiiView
             masterController.CheckTwoClicked(ws.ButtonState.Two)
         End If
 
+        'Synchronize leds with the battery
+        If ws.Battery >= 75.00 Then
+            wm.SetLEDs(True,True,True,True)
+        Else
+            If ws.Battery >= 50.00 Then
+                wm.SetLEDs(True,True,True,false)
+            Else
+                If ws.Battery >= 25.00 Then
+                    wm.SetLEDs(True,True,false,false)
+                Else
+                    If ws.Battery >= 0.00 Then
+                        wm.SetLEDs(True,false,false,false)
+                    Else
+                        wm.SetLEDs(false,false,false,false)
+                    End If
+                End If
+            End If
+        End If
+        
     End Sub
+
 
     Private Function IsControllerConnected() As Boolean
         mWC = New WiimoteCollection()
